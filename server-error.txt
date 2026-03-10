@@ -1,0 +1,126 @@
+﻿[dotenv@17.3.1] injecting env (0) from .env -- tip: ­ƒøá´©Å  run anywhere with `dotenvx run -- yourcommand`
+node : C:\Users\Dell\D
+ownloads\Giovanna-Eyeb
+row\gimiranda---design
+-de-sobrancelhas\node_
+modules\@supabase\supa
+base-js\src\lib\helper
+s.ts:86
+No linha:1 caractere:1
++ node -e "require('ch
+ild_process').execSync
+('npx tsx server.ts', 
+{stdi ...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (C:\Users\D   
+ ell\D...b\helpers    
+.ts:86:String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+    throw new 
+Error('supabaseUrl is 
+required.')
+          ^
+
+
+Error: supabaseUrl is 
+required.
+    at 
+validateSupabaseUrl (C
+:\Users\Dell\Downloads
+\Giovanna-Eyebrow\gimi
+randa---design-de-sobr
+ancelhas\node_modules\
+@supabase\supabase-js\
+src\lib\helpers.ts:86:
+11)
+    at new 
+SupabaseClient (C:\Use
+rs\Dell\Downloads\Giov
+anna-Eyebrow\gimiranda
+---design-de-sobrancel
+has\node_modules\@supa
+base\supabase-js\src\S
+upabaseClient.ts:117:2
+1)
+    at createClient (C
+:\Users\Dell\Downloads
+\Giovanna-Eyebrow\gimi
+randa---design-de-sobr
+ancelhas\node_modules\
+@supabase\supabase-js\
+src\index.ts:60:10)
+    at <anonymous> (C:
+\Users\Dell\Downloads\
+Giovanna-Eyebrow\gimir
+anda---design-de-sobra
+ncelhas\server.ts:13:1
+8)
+    at ModuleJob.run (
+node:internal/modules/
+esm/module_job:271:25)
+    at async onImport.
+tracePromise.__proto__
+ (node:internal/module
+s/esm/loader:578:26)
+    at async asyncRunE
+ntryPointWithESMLoader
+ (node:internal/module
+s/run_main:116:5)
+
+Node.js v22.14.0
+node:child_process:957
+    throw err;
+    ^
+
+Error: Command 
+failed: npx tsx 
+server.ts
+    at 
+genericNodeError (node
+:internal/errors:983:1
+5)
+    at wrappedFn (node
+:internal/errors:537:1
+4)
+    at 
+checkExecSyncError (no
+de:child_process:882:1
+1)
+    at 
+Object.execSync (node:
+child_process:954:15)
+    at [eval]:1:26
+    at runScriptInThis
+Context (node:internal
+/vm:209:10)
+    at node:internal/p
+rocess/execution:449:1
+2
+    at 
+[eval]-wrapper:6:24
+    at 
+runScriptInContext (no
+de:internal/process/ex
+ecution:447:60)
+    at evalFunction (n
+ode:internal/process/e
+xecution:87:30) {
+  status: 1,
+  signal: null,
+  output: [ null, 
+null, null ],
+  pid: 19628,
+  stdout: null,
+  stderr: null
+}
+
+Node.js v22.14.0
