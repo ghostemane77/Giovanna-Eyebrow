@@ -45,16 +45,16 @@ export function Hero() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 size="lg"
-                className="text-base h-14 px-8 rounded-full shadow-lg shadow-[var(--color-primary)]/25 hover:shadow-[var(--color-primary)]/40 hover:scale-[1.02] transition-all duration-300"
+                className="text-base h-14 px-8 rounded-full shadow-xl shadow-[var(--color-primary)]/30 hover:shadow-2xl hover:shadow-[var(--color-primary)]/50 hover:scale-[1.03] transition-all duration-300 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-hover)] border-0"
                 onClick={() => document.getElementById('agendamento')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                Agendar pelo WhatsApp
+                Agendar seu Horário
                 <ArrowRight className="ml-2" size={18} />
               </Button>
               <Button
                 variant="outline"
                 size="lg"
-                className="text-base h-14 px-8 rounded-full border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition-all duration-300"
+                className="text-base h-14 px-8 rounded-full border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-[var(--color-primary)]/30 transition-all duration-300"
                 onClick={() => document.getElementById('galeria')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Ver resultados

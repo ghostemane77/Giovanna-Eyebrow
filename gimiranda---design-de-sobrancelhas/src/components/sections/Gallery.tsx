@@ -12,21 +12,24 @@ export function Gallery() {
       title: 'Design Personalizado'
     },
     {
-      before: '/images/gallery/antes.jpg',
-      after: '/images/gallery/depois.jpg',
+      before: '/images/gallery/antes01.jpeg',
+      after: '/images/gallery/depois01.jpeg',
       title: 'Harmonia Facial'
     },
     {
-      before: '/images/gallery/antes.jpg',
-      after: '/images/gallery/depois.jpg',
+      before: '/images/gallery/ante02.jpeg',
+      after: '/images/gallery/depois02.jpeg',
       title: 'Naturalidade & Simetria'
     },
   ];
 
   const singleImages = [
     '/images/gallery/depois.jpg',
+    '/images/gallery/depois01.jpeg',
+    '/images/gallery/depois02.jpeg',
+    '/images/gallery/depois03.jpeg',
+    '/images/gallery/antes03.jpeg',
     '/images/gallery/profile.jpg',
-    '/images/gallery/antes.jpg',
   ];
 
   return (
@@ -54,9 +57,9 @@ export function Gallery() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="card-premium overflow-hidden group"
+              className="card-premium overflow-hidden group flex flex-col"
             >
-              <div className="grid grid-cols-2 gap-0">
+              <div className="grid grid-cols-2 gap-0 flex-grow">
                 {/* Before */}
                 <div
                   className="relative aspect-[3/4] cursor-pointer overflow-hidden"
@@ -74,7 +77,7 @@ export function Gallery() {
                 </div>
                 {/* After */}
                 <div
-                  className="relative aspect-[3/4] cursor-pointer overflow-hidden"
+                  className="relative aspect-[3/4] cursor-pointer overflow-hidden bg-gray-50"
                   onClick={() => setSelectedImage(item.after)}
                 >
                   <img
@@ -88,7 +91,7 @@ export function Gallery() {
                   </div>
                 </div>
               </div>
-              <div className="p-5 text-center">
+              <div className="p-5 text-center bg-white border-t border-gray-50">
                 <h4 className="font-serif text-lg font-medium text-gray-900">{item.title}</h4>
               </div>
             </motion.div>
@@ -96,7 +99,7 @@ export function Gallery() {
         </div>
 
         {/* Single Images Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-6 md:grid-cols-3 gap-4">
           {singleImages.map((src, index) => (
             <motion.div
               key={index}
@@ -104,7 +107,7 @@ export function Gallery() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative aspect-square rounded-2xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-xl transition-all duration-500"
+              className={`relative rounded-2xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-xl transition-all duration-500 ${index < 2 ? 'col-span-2 aspect-square md:aspect-[4/3] lg:aspect-square' : 'aspect-square'}`}
               onClick={() => setSelectedImage(src)}
             >
               <img

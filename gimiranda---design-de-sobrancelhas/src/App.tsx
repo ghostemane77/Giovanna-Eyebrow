@@ -12,6 +12,7 @@ import { Booking } from './components/sections/Booking';
 import { BookingCTA } from './components/sections/BookingCTA';
 import { FAQ } from './components/sections/FAQ';
 import { Footer } from './components/sections/Footer';
+import { ChatWidget } from './components/ui/ChatWidget';
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
         <FAQ />
       </main>
       <Footer />
+      <ChatWidget />
     </div>
   );
 }
