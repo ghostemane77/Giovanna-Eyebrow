@@ -136,11 +136,11 @@ app.get("/api/appointments/availability", async (req, res) => {
     const targetDate = new Date(date + "T00:00:00");
     const weekday = targetDate.getDay();
 
-    const { data: hours } = await db.from("business_hours").select("*").eq("weekday", weekday).eq("active", true).single();
+    const { data: hours } = await db.from("business_hours").select("*").eq("weekday", weekday).eq("active", true).single() as { data: any };
     if (!hours) return res.json({ success: true, slots: [], message: "Closed" });
 
-    const { data: existing } = await db.from("appointments").select("start_time, end_time").eq("appointment_date", date).in("status", ["pendente", "confirmado"]);
-    const { data: blocked } = await db.from("blocked_slots").select("start_time, end_time").eq("block_date", date);
+    const { data: existing } = await db.from("appointments").select("start_time, end_time").eq("appointment_date", date).in("status", ["pendente", "confirmado"] as any) as { data: any[] | null };
+    const { data: blocked } = await db.from("blocked_slots").select("start_time, end_time").eq("block_date", date) as { data: any[] | null };
 
     const slots: string[] = [];
     const openMin = timeToMinutes(hours.open_time);
@@ -178,7 +178,7 @@ app.post("/api/appointments", async (req, res) => {
     // Get service for duration
     let service = MOCK_SERVICES.find(s => s.id === service_id);
     if (db) {
-      const { data } = await db.from("services").select("*").eq("id", service_id).single();
+      const { data } = await db.from("services").select("*").eq("id", service_id).single() as { data: any };
       if (data) service = data;
     }
 
@@ -188,7 +188,7 @@ app.post("/api/appointments", async (req, res) => {
 
     if (db) {
       // Check conflicts
-      const { data: conflicts } = await db.from("appointments").select("id").eq("appointment_date", appointment_date).in("status", ["pendente", "confirmado"]).gte("end_time", start_time).lte("start_time", end_time);
+      const { data: conflicts } = await db.from("appointments").select("id").eq("appointment_date", appointment_date).in("status", ["pendente", "confirmado"] as any).gte("end_time", start_time).lte("start_time", end_time) as { data: any[] | null };
       if (conflicts && conflicts.length > 0) {
         return res.status(409).json({ success: false, error: "Time slot already taken" });
       }
@@ -204,7 +204,7 @@ app.post("/api/appointments", async (req, res) => {
         end_time,
         notes: notes || null,
         status: "pendente",
-      }).select().single();
+      } as any).select().single() as { data: any; error: any };
 
       if (error) throw error;
 
@@ -228,19 +228,19 @@ app.post("/api/appointments", async (req, res) => {
         googleEventId = `sim_${Date.now()}`;
       }
 
-      if (googleEventId) {
-        await db.from("appointments").update({ google_calendar_event_id: googleEventId }).eq("id", appointment.id);
+      if (googleEventId && appointment) {
+        await (db.from("appointments") as any).update({ google_calendar_event_id: googleEventId }).eq("id", appointment.id);
       }
 
       // WhatsApp
       const msg = `Olá, ${customer_name}! ✨\\n\\nSeu horário para *${service?.name}* foi confirmado para *${formatDateBR(appointment_date)}* às *${start_time}*.\\n\\nSe precisar remarcar, entre em contato.\\n\\n— Giovanna Miranda`;
       const whatsappSent = await sendWhatsAppMessage(customer_phone, msg);
 
-      if (whatsappSent) {
-        await db.from("appointments").update({ whatsapp_sent: true, status: "confirmado" }).eq("id", appointment.id);
+      if (whatsappSent && appointment) {
+        await (db.from("appointments") as any).update({ whatsapp_sent: true, status: "confirmado" }).eq("id", appointment.id);
       }
 
-      return res.json({ success: true, data: { ...appointment, google_calendar_event_id: googleEventId, whatsapp_sent: whatsappSent } });
+      return res.json({ success: true, data: { ...(appointment as any), google_calendar_event_id: googleEventId, whatsapp_sent: whatsappSent } });
     }
 
     // No Supabase - simulated mode
